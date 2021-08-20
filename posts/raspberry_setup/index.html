@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>【树莓派】初上手 - XuKaFy&#39;s Blog</title><meta name="Description" content=""><meta property="og:title" content="【树莓派】初上手" />
+<meta property="og:description" content="这份教程是给 2020 年及以前的树莓派几乎完全手工配置教程。树莓派官网现在已经支持一键安装的Raspberry Pi Imager。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/raspberry_setup/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-05T22:37:51+00:00" />
+<meta property="article:modified_time" content="2020-06-05T22:37:51+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【树莓派】初上手"/>
+<meta name="twitter:description" content="这份教程是给 2020 年及以前的树莓派几乎完全手工配置教程。树莓派官网现在已经支持一键安装的Raspberry Pi Imager。"/>
+<meta name="application-name" content="XuKaFy&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="XuKaFy&#39;s Blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/raspberry_setup/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "【树莓派】初上手",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/raspberry_setup\/"
+        },"genre": "posts","keywords": "树莓派, LNMP, NextCloud","wordcount":  2992 ,
+        "url": "http:\/\/example.org\/posts\/raspberry_setup\/","datePublished": "2020-06-05T22:37:51+00:00","dateModified": "2020-06-05T22:37:51+00:00","publisher": {
+            "@type": "Organization",
+            "name": "作者"},"author": {
+                "@type": "Person",
+                "name": "作者"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="XuKaFy&#39;s Blog">XuKaFy&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="XuKaFy&#39;s Blog">XuKaFy&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">【树莓派】初上手</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>作者</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%95%99%E7%A8%8B/"><i class="far fa-folder fa-fw"></i>教程</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-05">2020-06-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2992 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#基本安装">基本安装</a></li>
+        <li><a href="#lnmp环境配置">LNMP环境配置</a></li>
+        <li><a href="#nextcloud配置">NextCloud配置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>这份教程是给 2020 年及以前的树莓派几乎完全手工配置教程。树莓派官网现在已经支持一键安装的<code>Raspberry Pi Imager</code>。</p>
+<h3 id="基本安装">基本安装</h3>
+<h4 id="准备">准备</h4>
+<p>你需要树莓派4B，一张越快越好的tf卡（大于8G），一个适配树莓派4B的<code>5V 3A</code>电源（最好官方），然后分下列情况准备：</p>
+<ul>
+<li>有线连接：USB鼠标，USB键盘，支持HDMI的显示器</li>
+<li>无线连接：一台可以联网的电脑，可以连接的无线网络</li>
+</ul>
+<p>你还可选一个树莓派壳子（最好官方）来保护主板本身。</p>
+<h4 id="系统安装">系统安装</h4>
+<p>树莓派使用tf卡作为储存，不自带闪存。显然自己买tf卡是不会有系统的，我们需要自己安装。这里我们登录<a href="https://www.raspberrypi.org/downloads/" target="_blank" rel="noopener noreffer">Raspberry官网下载</a>。</p>
+<p>我们注意到这里有两个选项：<code>NOOBS</code>和<code>Raspbian</code>。我没有尝试过<code>NOOBS</code>，而是直接选择<code>Raspbian</code>的<code>Raspbian Buster Lite</code>进行下载，这样就能保证纯净、最小占用地安装。（如果你选择<code>full</code>，那么可以选择性跳过基本配置中的大多数步骤）</p>
+<h5 id="烧录系统">烧录系统</h5>
+<p>我们刚刚下载好的系统镜像应该是<code>img</code>格式的。我们使用软件<code>Win32DiskImager</code>将系统烧录到tf卡中。之后直接把tf卡插入树莓派开机即可。</p>
+<h5 id="恢复">恢复</h5>
+<p>我的树莓派一开始无法开机（绿灯不闪），参考官网是这样的：</p>
+<blockquote>
+<p>Recovery
+If your Raspberry Pi 4 will not boot, it is possible that the SPI EEPROM has become corrupted.
+To check, remove the SD card, disconnect the device from power, then reconnect it. If the green LED does not flash, you will need to reprogram the EEPROM:</p>
+<ol>
+<li>Download the bootloader</li>
+<li>Extract it to an empty FAT-formatted SD card and insert it into your Raspberry Pi 4</li>
+<li>Connect the power and wait for the green LED to flash quickly</li>
+</ol>
+</blockquote>
+<p>这里需要另一张tf卡，或者为保险起见在烧录系统之前先进行这个操作。</p>
+<h5 id="有线连接配置">有线连接配置</h5>
+<p>直接接上鼠标键盘显示器即可。</p>
+<h5 id="无线联网配置无头安装">无线联网配置（无头安装）</h5>
+<p>用你的电脑在tf卡中新建文件<code>SSH</code>和<code>wpa_supplicant.conf</code>，在<code>wpa_supplicant.conf</code>中输入：</p>
+<pre><code>country=CN
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+    ssid=&quot;你的WIFI网络名称&quot;
+    psk=&quot;你的WIFI网络密码&quot;
+    key_mgmt=WPA-PSK
+}
+</code></pre><p><strong>注意这里的<code>key_mgmt</code>不论你的网络加密是<code>WPA-PSK</code>还是<code>WPA2-PSK</code>统一写<code>WPA-PSK</code>。</strong></p>
+<p>之后安装<code>Advanced IP Scanner</code>，找到树莓派的IP，然后安装<code>PuTTY</code>，用树莓派的IP登录，用户名和密码分别是<code>pi</code>和<code>raspberry</code>。</p>
+<h5 id="系统备份方法">系统备份方法</h5>
+<p>同烧录系统，我们不点击写入，而是新建一个类型为img的空文件，在<code>Win32DiskImager</code>中选择它，然后<strong>读取</strong>，就可以备份系统。注意这是全盘备份，你的tf卡有多大备份就多大。</p>
+<h4 id="基本配置">基本配置</h4>
+<h5 id="更换源">更换源</h5>
+<p>原网址：<a href="https://www.jianshu.com/p/67b9e6ebf8a0" target="_blank" rel="noopener noreffer">树莓派—raspbian软件源（全）</a>。</p>
+<pre><code>sudo sed -i 's#://raspbian.raspberrypi.org#s://mirrors.ustc.edu.cn/raspbian#g' /etc/apt/sources.list
+sudo sed -i 's#://archive.raspberrypi.org/debian#s://mirrors.ustc.edu.cn/archive.raspberrypi.org/debian#g' /etc/apt/sources.list.d/raspi.list
+</code></pre><p>之后更新：</p>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade
+</code></pre><h5 id="配置中文">配置中文</h5>
+<p>先执行：</p>
+<pre><code>sudo raspi-config
+</code></pre><p>方向键选择第四项<code>Localisation Options</code>。</p>
+<p>选择<code>Change Locale</code>，上下键翻动，空格键选择所有<code>zh_CN</code>开头的，取消其他不是的，然后回车确认。之后继续选择<code>zh_CN.UTF8</code>（选择默认项），然后回车确认，再退出设置，等待语言设置完成（这之后会回到一开始的<code>raspi-config</code>。语言的更改会在退出设置后开始）。</p>
+<p>这之后安装字体库和输入法：</p>
+<pre><code>sudo apt-get install ttf-wqy-zenhei
+sudo apt-get install scim-pinyin
+</code></pre><p>图形界面安装完之后，使用<code>Ctrl + Space</code>来切换输入法。</p>
+<h5 id="调整分区大小">调整分区大小</h5>
+<p><strong>如果你不希望你的备份非常大，而且你没有自信把系统搞到大于8G的话请不要做这一步！</strong></p>
+<pre><code>sudo raspi-config
+</code></pre><p>之后选择<code>Advanced Options</code>和<code>Expand Filesystem</code>，回车确定后等待。</p>
+<p>用以下命令确认：</p>
+<pre><code>df -h
+</code></pre><h5 id="安装桌面环境">安装桌面环境</h5>
+<p>原网址：<a href="https://blog.csdn.net/Chenger_32123/article/details/81331999" target="_blank" rel="noopener noreffer">树莓派安装图形化界面（PIXEL）</a>。</p>
+<pre><code>sudo apt-get update
+sudo apt-get install xorg
+sudo apt-get install lxde openbox
+sudo apt-get install pix-icons pix-plym-splash pixel-wallpaper
+sudo apt-get install raspberrypi-ui-mods
+sudo reboot
+</code></pre><p>在<code>reboot</code>之后树莓派会重启，这段时间内保持网络不断开即可，树莓派会自动连接。</p>
+<h5 id="远程系统连接配置">远程系统连接配置</h5>
+<p><strong>做这一步之前需要先开启SSH，可以参考<code>无线联网配置</code>中创建文件SSH的方式开启，或者输入<code>sudo /etc/init.d/ssh start</code>来开始，或者用<code>raspi-config</code>开启。</strong></p>
+<pre><code>sudo apt-get install tightvncserver xrdp
+</code></pre><p>之后用Windows的<code>远程桌面连接</code>连接树莓派的IP即可，用户名和密码为<code>pi</code>和<code>raspberry</code>，即你的默认用户名和密码。</p>
+<h5 id="sftp配置">SFTP配置</h5>
+<p>在Windows上安装FileZilla，输入树莓派ip，用户名和密码即可。</p>
+<h5 id="ftp配置">FTP配置</h5>
+<p>原网址：<a href="https://blog.csdn.net/c80486/article/details/8460854" target="_blank" rel="noopener noreffer">树莓派(raspberry pi)学习10: 安装ftp服务器</a></p>
+<pre><code>sudo apt-get install vsftpd
+sudo service vsftpd start
+sudo nano /etc/vsftpd.conf
+</code></pre><p>然后将下列地方分别修改为：</p>
+<pre><code>anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
+</code></pre><p>（nano使用Ctrl + O保存，Ctrl + X退出）</p>
+<pre><code>sudo service vsftpd restart
+</code></pre><h3 id="lnmp环境配置">LNMP环境配置</h3>
+<blockquote>
+<p>LNMP是指一组通常一起使用来运行动态网站或者服务器的自由软件名称首字母缩写。L指Linux，N指Nginx，M一般指MySQL，也可以指MariaDB，P一般指PHP，也可以指Perl或Python。</p>
+</blockquote>
+<p>这里我们要搭建的是：Raspbian + Nginx + MariaDB + PHP。</p>
+<h4 id="安装nginx">安装Nginx</h4>
+<pre><code>sudo apt-get install nginx
+</code></pre><h4 id="配置nginx">配置Nginx</h4>
+<p>原网址：<a href="https://shumeipai.nxez.com/2020/03/21/install-pi-dashboard-with-nginx-php73-on-pi.htmll" target="_blank" rel="noopener noreffer">在 Raspbian 上部署 LNMP + Pi Dashboard</a></p>
+<p>修改/etc/nginx/sites-available/default。找到这一段：</p>
+<pre><code>location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+</code></pre><p>替换为：</p>
+<pre><code>location / {
+    index  index.html index.htm index.php default.html default.htm default.php;
+}
+
+location ~\.php$ {
+    fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+    #fastcgi_pass 127.0.0.1:9000;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+}
+</code></pre><p>然后重启：</p>
+<pre><code>sudo service nginx restart
+</code></pre><h4 id="安装mariadb">安装MariaDB</h4>
+<pre><code>sudo apt-get install mariaDB-server-10.0
+</code></pre><h4 id="配置mariadb">配置MariaDB</h4>
+<p>原网址：<a href="https://www.jianshu.com/p/bbf24ac2fac1" target="_blank" rel="noopener noreffer">用Nextcloud在树莓派上布置你的个人网盘“NAS”</a></p>
+<pre><code>mysqladmin -u root -p password 你的密码
+mysql -uroot -p
+create user 'www'@'localhost' identified by '你的密码';
+grant all privileges on nextcloud.* to 'www'@'localhost' identified by '你的密码';
+exit
+</code></pre><p>原网址：<a href="https://www.fkomm.cn/article/2018/10/11/52.html" target="_blank" rel="noopener noreffer">树莓派安装 Nginx + PHP7.0 + phpMyAdmin + Pi Dashboard</a></p>
+<pre><code>sudo mysql -u root -p
+update mysql.user set plugin='mysql_native_password';  #重置加密方式
+update mysql.user set password=PASSWORD(&quot;你的密码&quot;) where User='root';  #设置新密码
+flush privileges;  #刷新权限信息
+</code></pre><p>这之后可以直接用root和密码登入phpMyAdmin。</p>
+<h4 id="安装php">安装PHP</h4>
+<p>原网址：<a href="https://www.jianshu.com/p/bbf24ac2fac1" target="_blank" rel="noopener noreffer">用Nextcloud在树莓派上布置你的个人网盘“NAS”</a>。</p>
+<pre><code>sudo apt-get install php7.3-fpm php7.3-cgi php7.3-cli php7.3-curl php7.3-gd php7.3-mysql php7.3-intl php-imagick
+</code></pre><p>注意这里的php版本是7.3（本来要下载php5和php7，但是下载不到）。</p>
+<p>我们修改/etc/php/7.3/fpm/php.ini。</p>
+<pre><code>opcache.enable=1
+opcache.enable_cli=1
+opcache.interned_strings_buffer=8
+opcache.max_accelerated_files=10000
+opcache.memory_consumption=128
+opcache.save_comments=1
+opcache.revalidate_freq=1
+</code></pre><h4 id="安装phpmyadmin">安装phpMyAdmin</h4>
+<p>原网址：<a href="https://blog.csdn.net/sinat_27938829/article/details/72084586" target="_blank" rel="noopener noreffer">RaspberryPi 3B 搭建LAMP环境+phpMyAdmin</a></p>
+<pre><code>sudo apt-get install phpmyadmin
+sudo ln -s /usr/share/phpmyadmin /var/www/html
+sudo service php7.3-fpm restart
+</code></pre><p>选择界面我们按Esc（不是apache2和lighttpd，选择会出错）。</p>
+<h4 id="安装pi-dashboard">安装pi-dashboard</h4>
+<p>原网址：<a href="https://shumeipai.nxez.com/2020/03/21/install-pi-dashboard-with-nginx-php73-on-pi.html" target="_blank" rel="noopener noreffer">在 Raspbian 上部署 LNMP + Pi Dashboard</a></p>
+<pre><code>cd /var/www/html
+sudo git clone https://github.com/spoonysonny/pi-dashboard.git
+</code></pre><h3 id="nextcloud配置">NextCloud配置</h3>
+<h4 id="下载nextcloud">下载NextCloud</h4>
+<p>原网址：<a href="https://www.jianshu.com/p/54ab0753b244" target="_blank" rel="noopener noreffer">树莓派安装Nextcloud</a>。</p>
+<p>因为wget速度太慢了，我们可以用电脑下载后用FileZilla传输到树莓派。这之后拷贝到/var/www/html中即可。</p>
+<pre><code>unzip nextcloud-16.0.4.zip
+sudo mv nextcloud /var/www
+cd html; sudo ln -s ../nextcloud nextcloud; cd ..
+sudo chown -R root:root nextcloud
+cd nextcloud; sudo mkdir data
+sudo chown -R www-data:www-data data config apps
+</code></pre><h4 id="安装nextcloud">安装NextCloud</h4>
+<p>原网址：<a href="https://www.jianshu.com/p/54ab0753b244" target="_blank" rel="noopener noreffer">树莓派安装Nextcloud</a>。</p>
+<p>先用phpMyAdmin创建空数据库<code>nextcloud</code>。</p>
+<p>我们修改/var/www/nextcloud/config/config.php：
+找到trusted_domains，加入树莓派的ip：</p>
+<pre><code>'trusted_domains' =&gt;
+  array (
+    0 =&gt; 'localhost',
+    1 =&gt; '你的树莓派ip',
+ ),
+</code></pre><p>然后浏览器登录树莓派ip/nextcloud，创建NextCloud自己的用户，在下面的数据库设置中输入数据库用户为root，密码与之前在mariaDB设置的相同（与phpMyAdmin的一样），数据库填<code>nextcloud</code>。这之后等待安装即可。</p>
+<h4 id="nextcloud-缓存设置">NextCloud 缓存设置</h4>
+<p>原网址：<a href="https://www.jianshu.com/p/843af0af176e" target="_blank" rel="noopener noreffer">使用NextCloud 12 搭建私人云服务和问题解决</a></p>
+<p>先安装apcu：</p>
+<pre><code>sudo apt-get update
+sudo apt-get install php-apcu -y
+</code></pre><p>然后打开/var/www/nextcloud/config/config.php文件，添加下面这行</p>
+<pre><code>'memcache.local' =&gt; '\OC\Memcache\APCu',
+</code></pre><p>之后重启服务：</p>
+<pre><code>sudo service php7.3-fpm restart
+sudo service nginx restart
+</code></pre></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-05</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>,&nbsp;<a href="/tags/lnmp/">LNMP</a>,&nbsp;<a href="/tags/nextcloud/">NextCloud</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

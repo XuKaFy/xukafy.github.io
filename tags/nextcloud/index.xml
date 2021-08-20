@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>NextCloud - 标签 - XuKaFy&#39;s Blog</title>
+        <link>http://example.org/tags/nextcloud/</link>
+        <description>NextCloud - 标签 - XuKaFy&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 05 Jun 2020 22:37:51 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/nextcloud/" rel="self" type="application/rss+xml" /><item>
+    <title>【树莓派】初上手</title>
+    <link>http://example.org/posts/raspberry_setup/</link>
+    <pubDate>Fri, 05 Jun 2020 22:37:51 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://example.org/posts/raspberry_setup/</guid>
+    <description><![CDATA[<p>这份教程是给 2020 年及以前的树莓派几乎完全手工配置教程。树莓派官网现在已经支持一键安装的<code>Raspberry Pi Imager</code>。</p>]]></description>
+</item></channel>
+</rss>
