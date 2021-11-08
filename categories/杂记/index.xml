@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>杂记 - 分类 - XuKaFy&#39;s Blog</title>
+        <link>http://xukafy.github.io/categories/%E6%9D%82%E8%AE%B0/</link>
+        <description>杂记 - 分类 - XuKaFy&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xufangyu2@163.com (XuKaFy)</managingEditor>
+            <webMaster>xufangyu2@163.com (XuKaFy)</webMaster><lastBuildDate>Mon, 01 Nov 2021 18:45:05 &#43;0000</lastBuildDate><atom:link href="http://xukafy.github.io/categories/%E6%9D%82%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+    <title>【杂记】Cnss Recruit 2021 wps of Dev</title>
+    <link>http://xukafy.github.io/posts/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B0cnss-recruit-2021-wps-of-dev/</link>
+    <pubDate>Mon, 01 Nov 2021 18:45:05 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://xukafy.github.io/posts/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B0cnss-recruit-2021-wps-of-dev/</guid>
+    <description><![CDATA[<p>这是<code>Cnss Recruit 2021</code>，<code>Dev</code>方向的write-ups。</p>]]></description>
+</item></channel>
+</rss>
