@@ -5,7 +5,7 @@
         <description>CTF - 分类 - XuKaFy&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xufangyu2@163.com (XuKaFy)</managingEditor>
             <webMaster>xufangyu2@163.com (XuKaFy)</webMaster><lastBuildDate>Sun, 04 Jul 2021 22:37:51 &#43;0000</lastBuildDate><atom:link href="http://xukafy.github.io/categories/ctf/" rel="self" type="application/rss+xml" /><item>
-    <title>【CTF】RSA原理和实现</title>
+    <title>【CTF】RSA初探</title>
     <link>http://xukafy.github.io/posts/ctf/ctfrsa%E5%88%9D%E6%8E%A2/</link>
     <pubDate>Sun, 04 Jul 2021 22:37:51 &#43;0000</pubDate>
     <author>作者</author>
