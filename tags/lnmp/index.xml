@@ -5,11 +5,11 @@
         <description>LNMP - 标签 - XuKaFy&#39;s Blog</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xufangyu2@163.com (XuKaFy)</managingEditor>
             <webMaster>xufangyu2@163.com (XuKaFy)</webMaster><lastBuildDate>Fri, 05 Jun 2020 22:37:51 &#43;0000</lastBuildDate><atom:link href="http://xukafy.github.io/tags/lnmp/" rel="self" type="application/rss+xml" /><item>
-    <title>【树莓派】初上手</title>
-    <link>http://xukafy.github.io/posts/raspberry_setup/</link>
+    <title>【新手向】树莓派的基本安装</title>
+    <link>http://xukafy.github.io/posts/%E6%96%B0%E6%89%8B%E5%90%91/%E6%96%B0%E6%89%8B%E5%90%91%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85/</link>
     <pubDate>Fri, 05 Jun 2020 22:37:51 &#43;0000</pubDate>
     <author>作者</author>
-    <guid>http://xukafy.github.io/posts/raspberry_setup/</guid>
+    <guid>http://xukafy.github.io/posts/%E6%96%B0%E6%89%8B%E5%90%91/%E6%96%B0%E6%89%8B%E5%90%91%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%AE%89%E8%A3%85/</guid>
     <description><![CDATA[<p>这份教程是给 2020 年及以前的树莓派几乎完全手工配置教程。树莓派官网现在已经支持一键安装的<code>Raspberry Pi Imager</code>。</p>]]></description>
 </item></channel>
 </rss>
