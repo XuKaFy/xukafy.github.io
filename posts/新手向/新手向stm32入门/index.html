@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>【新手向】STM32入门 - XuKaFy&#39;s Blog</title><meta name="Description" content="一些小帮助"><meta property="og:title" content="【新手向】STM32入门" />
+<meta property="og:description" content="如何从对STM32一脸懵逼到用STM32做点事情。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xukafy.github.io/posts/%E6%96%B0%E6%89%8B%E5%90%91/%E6%96%B0%E6%89%8B%E5%90%91stm32%E5%85%A5%E9%97%A8/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-11-01T18:43:21+00:00" />
+<meta property="article:modified_time" content="2021-11-01T18:43:21+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【新手向】STM32入门"/>
+<meta name="twitter:description" content="如何从对STM32一脸懵逼到用STM32做点事情。"/>
+<meta name="application-name" content="XuKaFy&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="XuKaFy&#39;s Blog"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://xukafy.github.io/posts/%E6%96%B0%E6%89%8B%E5%90%91/%E6%96%B0%E6%89%8B%E5%90%91stm32%E5%85%A5%E9%97%A8/" /><link rel="prev" href="http://xukafy.github.io/posts/c&#43;&#43;/c&#43;&#43;d%E6%8C%87%E9%92%88%E5%92%8Cp%E6%8C%87%E9%92%88/" /><link rel="next" href="http://xukafy.github.io/posts/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B0cnss-recruit-2021-wps-of-dev/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "【新手向】STM32入门",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/xukafy.github.io\/posts\/%E6%96%B0%E6%89%8B%E5%90%91\/%E6%96%B0%E6%89%8B%E5%90%91stm32%E5%85%A5%E9%97%A8\/"
+        },"genre": "posts","keywords": "STM32, HAL","wordcount":  5315 ,
+        "url": "http:\/\/xukafy.github.io\/posts\/%E6%96%B0%E6%89%8B%E5%90%91\/%E6%96%B0%E6%89%8B%E5%90%91stm32%E5%85%A5%E9%97%A8\/","datePublished": "2021-11-01T18:43:21+00:00","dateModified": "2021-11-01T18:43:21+00:00","publisher": {
+            "@type": "Organization",
+            "name": "XuKaFy"},"author": {
+                "@type": "Person",
+                "name": "XuKaFy"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="XuKaFy&#39;s Blog">XuKaFy&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="XuKaFy&#39;s Blog">XuKaFy&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">【新手向】STM32入门</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>XuKaFy</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E6%96%B0%E6%89%8B%E5%90%91/"><i class="far fa-folder fa-fw"></i>新手向</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-11-01">2021-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5315 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#stm32-是什么能干什么如何工作">STM32 是什么、能干什么、如何工作</a></li>
+    <li><a href="#认识-stm32-的组成部分">认识 STM32 的组成部分</a></li>
+    <li><a href="#学习利用-stm32-进行开发的大致流程">学习利用 STM32 进行开发的大致流程</a>
+      <ul>
+        <li><a href="#硬件该学多少才能做项目">硬件该学多少才能做项目</a></li>
+        <li><a href="#stm32cubemx-和-uvision-是干什么的">STM32CubeMX 和 uVision 是干什么的</a></li>
+        <li><a href="#hal库和寄存器的区别在哪里">HAL库和寄存器的区别在哪里</a></li>
+      </ul>
+    </li>
+    <li><a href="#自学帮助">自学帮助</a>
+      <ul>
+        <li><a href="#怎么看懂别人写的教程">怎么看懂别人写的教程</a></li>
+        <li><a href="#怎么看懂-stm32cubemx-为我生成的代码">怎么看懂 STM32CubeMX 为我生成的代码</a></li>
+        <li><a href="#如何判断哪里有问题">如何判断哪里有问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#stm32-内部细节">STM32 内部细节</a>
+      <ul>
+        <li><a href="#中断irq">中断——IRQ</a></li>
+        <li><a href="#串口usart和uart">串口——USART和UART</a></li>
+        <li><a href="#时钟树rcc">时钟树——RCC</a></li>
+        <li><a href="#电压计adc">电压计——ADC</a></li>
+        <li><a href="#计时器tim">计时器——TIM</a></li>
+        <li><a href="#特殊计时器systick">特殊计时器——SysTick</a></li>
+        <li><a href="#可断电走时系统rtc">可断电走时系统——RTC</a></li>
+      </ul>
+    </li>
+    <li><a href="#stm32-的硬件操控">STM32 的硬件操控</a>
+      <ul>
+        <li><a href="#硬件和软件的关系是什么">硬件和软件的关系是什么</a></li>
+        <li><a href="#特殊的输出方式pwn-调制输出">特殊的输出方式——PWN 调制输出</a></li>
+        <li><a href="#尝试驱动一些基本单元">尝试驱动一些基本单元</a></li>
+        <li><a href="#如何实现复杂的外设控制">如何实现复杂的外设控制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>如何从对STM32一脸懵逼到用STM32做点事情。</p>
+<h2 id="stm32-是什么能干什么如何工作">STM32 是什么、能干什么、如何工作</h2>
+<p>STM32可以看作一个“弱化”的、可以驱动硬件执行某些操作的电脑。</p>
+<p>狭义上说，STM32并不是你手上的那个电路板<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/5172004191142.png"
+        data-srcset="vx_images/5172004191142.png, vx_images/5172004191142.png 1.5x, vx_images/5172004191142.png 2x"
+        data-sizes="auto"
+        alt="vx_images/5172004191142.png"
+        title="vx_images/5172004191142.png" />，而是中间那个方形的STM32芯片<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/1972905209568.png"
+        data-srcset="vx_images/1972905209568.png, vx_images/1972905209568.png 1.5x, vx_images/1972905209568.png 2x"
+        data-sizes="auto"
+        alt="vx_images/1972905209568.png"
+        title="vx_images/1972905209568.png" />。对于STM32芯片来说，除了他以外的部分相当于是生产厂家为了帮助你能更方便地使用STM32而开发的，不过一般不引起混淆的话，我们直接把整块板叫做STM32。</p>
+<p>当你拿到一块STM32的时候，你至少需要注意以下部分：</p>
+<ol>
+<li>
+<p>STM32 本身的型号</p>
+<p>以<code>STM32F103C6T6</code>，他的命名是分段的：</p>
+<ul>
+<li><code>STM32</code></li>
+<li><code>F103</code></li>
+<li><code>C6T6</code></li>
+</ul>
+<p>至于每一个部分代表什么，可以直接到网上查相关资料。你大概需要知道，型号不同，芯片能操作的引脚数、主频（运行速度）、带有的外设数量（比如计时器等等，后面会讲）、后期的软件设置都会略有不同。对于只需要点个灯，蜂鸣器开个响的新手而言，STM32之间几乎没有什么差别，随便选一个教程多的STM32型号就可以（但是一定要确保自己有写入程序进STM32的能力。最小系统板本身并不能下载程序，具体后面会讲）。</p>
+</li>
+<li>
+<p>你的 STM32 上有什么</p>
+<p>对比下面的三个板子：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/2056609197435.png"
+        data-srcset="vx_images/2056609197435.png, vx_images/2056609197435.png 1.5x, vx_images/2056609197435.png 2x"
+        data-sizes="auto"
+        alt="vx_images/2056609197435.png"
+        title="vx_images/2056609197435.png" /><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/3945309217601.png"
+        data-srcset="vx_images/3945309217601.png, vx_images/3945309217601.png 1.5x, vx_images/3945309217601.png 2x"
+        data-sizes="auto"
+        alt="vx_images/3945309217601.png"
+        title="vx_images/3945309217601.png" /><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/1185010210270.png"
+        data-srcset="vx_images/1185010210270.png, vx_images/1185010210270.png 1.5x, vx_images/1185010210270.png 2x"
+        data-sizes="auto"
+        alt="vx_images/1185010210270.png"
+        title="vx_images/1185010210270.png" /></p>
+<p>他们都是STM32，但是看起来差别很大。</p>
+<ul>
+<li>
+<p>第一块板一般称为最小系统板。特点是“啥都没有”，你甚至得自己焊针脚上去。</p>
+</li>
+<li>
+<p>第二块板是意法半导体（生产STM32的公司）自己做的开发板。特点是保留的引脚数目多，而且预留了与Arduino兼容的引脚。</p>
+</li>
+<li>
+<p>第三块板是正点原子制作的教育开发板。特点是已经自带了非常多硬件，可以快速实现简单功能，但是扩展性比较差。</p>
+</li>
+</ul>
+<p>作为新手，如果你只是想要玩一下STM32或者排斥做硬件的话，建议选择板载硬件比较多的第三种。当然，一般而言学校的各种竞赛只会发给你最小系统板。使用这种板需要一些硬件基础，而且需要自己买USB转TTL设备（用于串口连接，后面会提到。不是必备的）和STLink（用于把程序下载到STM32中）。</p>
+</li>
+</ol>
+<h2 id="认识-stm32-的组成部分">认识 STM32 的组成部分</h2>
+<p>仔细看你的STM32（下面用最小系统板<code>STM32F103C6T6</code>举例）：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/2056609197435.png"
+        data-srcset="vx_images/2056609197435.png, vx_images/2056609197435.png 1.5x, vx_images/2056609197435.png 2x"
+        data-sizes="auto"
+        alt="vx_images/2056609197435.png"
+        title="vx_images/2056609197435.png" /></p>
+<ul>
+<li>
+<p>两侧的孔就是STM32和外界硬件连接的接口，每个接口的边上有名字。你可能会发现很多脚叫做<code>PXxx</code>，其中<code>X=A/B/C/D</code>，<code>xx</code>表示数字，我们一般用到的驱动外部硬件的脚就是这些。其他还有特殊的口，比如<code>GND``3.3V``5V</code>这样的供电口，或者<code>VB(AT)</code>用于备用电池供电，或者<code>R(eset)</code>用于外部重启。</p>
+</li>
+<li>
+<p>前面的四个脚用来STLink。你的程序就是从这四个口中的两个（<code>SWO``SWCLK</code>，另外两个是<code>GND</code>和<code>5V</code>，用于供电）下载到STM32中的。</p>
+</li>
+<li>
+<p>中间的就是STM32芯片。</p>
+</li>
+<li>
+<p>黄色的部分用来切换引导模式（可以先不管）。上面插着两个“帽子”，叫做跳线帽，用来连接两个相邻针脚。</p>
+</li>
+<li>
+<p>黄色的部分边上有个白色的键<code>Reset</code>，用于STM32的复位（重新启动）。</p>
+</li>
+<li>
+<p>前面四根脚（<code>SWD</code>）的后面有两个灯<code>PWR</code>和<code>PC13</code>，用于显示是否通电和是否正常工作。注意，我们可以通过编写软件人为改变<code>PC13</code>（也就是灯）的行为。</p>
+</li>
+<li>
+<p>还有一些板载芯片用于稳压，保证STM32正常运行。</p>
+</li>
+</ul>
+<p>一般而言，最小系统板具有的部分，较大的开发板都会有，可以仔细看自己手上的开发板，找找上述部分。注意对于上面第三种STM32，某些针脚已经连接了板载硬件，所以看起来针脚会比较少。</p>
+<h2 id="学习利用-stm32-进行开发的大致流程">学习利用 STM32 进行开发的大致流程</h2>
+<p>基于STM32的开发是软硬结合的。</p>
+<p>大致上说，你要先知道你想要什么功能，然后了解什么硬件可以实现这种功能，然后查相关硬件的使用方式和使用条件（比如需要供多少伏的电等等，这个过程中你可以直接参考其他人的电路设计），最后才是软件编写。</p>
+<h3 id="硬件该学多少才能做项目">硬件该学多少才能做项目</h3>
+<p>你得熟悉你要操作的硬件。比如你要操控蜂鸣器发声，你就应该知道蜂鸣器电路怎么连接，也要知道什么样的频率发出什么样的声音；比如你要通过DHT11读入温湿度数据，你就必须要知道DHT11如何工作。同时，有一些芯片可以大大简化你的电路设计。比如四位数码管理论上应该连接十二根线到STM32上，但是如果你知道芯片<code>74HC595</code>和<code>74HC138</code>，你就可以简化到只需要接入六个脚。</p>
+<h3 id="stm32cubemx-和-uvision-是干什么的">STM32CubeMX 和 uVision 是干什么的</h3>
+<p>STM32CubxMX相当于帮助你可视化地初始化STM32。STM32CubeMX生成的代码没有什么特殊性，你甚至可以完全手写一遍，但是STM32CubxMX生成的效率更高（如果有用过Qt的Designer，可以理解为Designer之于你的代码）。</p>
+<p>uVision是你编写代码使用的IDE。这个IDE除了编写代码，编译代码以外还集成了下载代码到STM32中的功能。</p>
+<h3 id="hal库和寄存器的区别在哪里">HAL库和寄存器的区别在哪里</h3>
+<p>如果你仔细查看HAL库，你会发现HAL库相当于是寄存器套壳。HAL库只是屏蔽了你和底层的关系，使得你的代码更具有可移植性和可读性而已。所以本质上说，HAL库和寄存器没有什么区别，只是一个比较好读，一个比较直接（效率也会相应地稍高一些）而已。</p>
+<p>我个人建议是入门先学HAL库。当然，如果有别的单片机基础，直接学寄存器也没问题。</p>
+<h2 id="自学帮助">自学帮助</h2>
+<h3 id="怎么看懂别人写的教程">怎么看懂别人写的教程</h3>
+<p>你可以完全按照教程所说的做。有一些教程会在章节头放非常详细地寄存器操作方式（即使这份教程是HAL库教程）。这是好的，对于对硬件的理解很有帮助，但是对于初学者来说，可能看懂并不容易，这时候可以先跳过这一部分，先看具体代码并且学会如何使用它。等到后面对STM32理解比较深了再回过头来看这些部分。</p>
+<p>注意，尤其在初学阶段，建议只看一份教程，而且这份教程最好和你手中的STM32完全配套。如果不配套，有可能出现简单的（但是初学者并不能解决的）兼容性问题。</p>
+<h3 id="怎么看懂-stm32cubemx-为我生成的代码">怎么看懂 STM32CubeMX 为我生成的代码</h3>
+<p>打开uVision，可以看到我们的<code>main.c</code>所在的文件夹中还有<code>stm32f1xx_it.c</code>和<code>stm32f1xx_hal_msp.c</code>。这三个文件就是我们一般更改所在的位置。你可以这么理解：运行时代码放在<code>main.c</code>，中断代码放在<code>stm32f1xx_it.c</code>，而初始化设置放在<code>stm32f1xx_hal_msp.c</code>中。</p>
+<p>STM32CubeMX为我们生成的代码很多。要追踪自动生成的代码，我们可以直接从<code>int main();</code>入手。举个例子，我的<code>main</code>函数中有这些函数：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="cm">/* USER CODE BEGIN 1 */</span>
+
+  <span class="cm">/* USER CODE END 1 */</span>
+
+  <span class="cm">/* MCU Configuration--------------------------------------------------------*/</span>
+
+  <span class="cm">/* Reset of all peripherals, Initializes the Flash interface and the Systick. */</span>
+  <span class="n">HAL_Init</span><span class="p">();</span>
+
+  <span class="cm">/* USER CODE BEGIN Init */</span>
+
+  <span class="cm">/* USER CODE END Init */</span>
+
+  <span class="cm">/* Configure the system clock */</span>
+  <span class="n">SystemClock_Config</span><span class="p">();</span>
+
+  <span class="cm">/* USER CODE BEGIN SysInit */</span>
+
+  <span class="cm">/* USER CODE END SysInit */</span>
+
+  <span class="cm">/* Initialize all configured peripherals */</span>
+
+  <span class="cm">/* USER CODE BEGIN 2 */</span>
+
+  <span class="cm">/* USER CODE END 2 */</span>
+
+  <span class="cm">/* Infinite loop */</span>
+
+  <span class="cm">/* USER CODE BEGIN WHILE */</span>
+  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="cm">/* USER CODE END WHILE */</span>
+
+    <span class="cm">/* USER CODE BEGIN 3 */</span>
+  <span class="p">}</span>
+  <span class="cm">/* USER CODE END 3 */</span>
+<span class="p">}</span>
+</code></pre></div><p>我们点进<code>HAL_Init();</code>，可以看到：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">HAL_StatusTypeDef</span> <span class="nf">HAL_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="cm">/* Configure Flash prefetch */</span>
+<span class="cp">#if (PREFETCH_ENABLE != 0)
+</span><span class="cp">#if defined(STM32F101x6) || defined(STM32F101xB) || defined(STM32F101xE) || defined(STM32F101xG) || \
+</span><span class="cp">    defined(STM32F102x6) || defined(STM32F102xB) || \
+</span><span class="cp">    defined(STM32F103x6) || defined(STM32F103xB) || defined(STM32F103xE) || defined(STM32F103xG) || \
+</span><span class="cp">    defined(STM32F105xC) || defined(STM32F107xC)
+</span><span class="cp"></span>
+  <span class="cm">/* Prefetch buffer is not available on value line devices */</span>
+  <span class="n">__HAL_FLASH_PREFETCH_BUFFER_ENABLE</span><span class="p">();</span>
+<span class="cp">#endif
+</span><span class="cp">#endif </span><span class="cm">/* PREFETCH_ENABLE */</span><span class="cp">
+</span><span class="cp"></span>
+  <span class="cm">/* Set Interrupt Group Priority */</span>
+  <span class="n">HAL_NVIC_SetPriorityGrouping</span><span class="p">(</span><span class="n">NVIC_PRIORITYGROUP_4</span><span class="p">);</span>
+
+  <span class="cm">/* Use systick as time base source and configure 1ms tick (default clock after Reset is HSI) */</span>
+  <span class="n">HAL_InitTick</span><span class="p">(</span><span class="n">TICK_INT_PRIORITY</span><span class="p">);</span>
+
+  <span class="cm">/* Init the low level hardware */</span>
+  <span class="n">HAL_MspInit</span><span class="p">();</span>
+
+  <span class="cm">/* Return function status */</span>
+  <span class="k">return</span> <span class="n">HAL_OK</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>像这样刨根问底地点进每一个生成的函数，你会发现STM32CubeMX为你生成的代码和你在STM32CubeMX中的图形化设置内容完全一致。比如，如果我使用了<code>TIM3</code>，那么我的<code>main</code>函数当中就会出现：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// int main(void);
+</span><span class="c1"></span><span class="cm">/* Initialize all configured peripherals */</span>
+  <span class="n">MX_TIM3_Init</span><span class="p">();</span>
+</code></pre></div><p>点进去，就会有：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="c1">// stm32f1xx_it.c
+</span><span class="c1"></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">MX_TIM3_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+
+  <span class="cm">/* USER CODE BEGIN TIM3_Init 0 */</span>
+
+  <span class="cm">/* USER CODE END TIM3_Init 0 */</span>
+
+  <span class="n">TIM_ClockConfigTypeDef</span> <span class="n">sClockSourceConfig</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+  <span class="n">TIM_MasterConfigTypeDef</span> <span class="n">sMasterConfig</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+  <span class="cm">/* USER CODE BEGIN TIM3_Init 1 */</span>
+
+  <span class="cm">/* USER CODE END TIM3_Init 1 */</span>
+  <span class="n">htim3</span><span class="p">.</span><span class="n">Instance</span> <span class="o">=</span> <span class="n">TIM3</span><span class="p">;</span>
+  <span class="n">htim3</span><span class="p">.</span><span class="n">Init</span><span class="p">.</span><span class="n">Prescaler</span> <span class="o">=</span> <span class="mi">159</span><span class="p">;</span>
+  <span class="n">htim3</span><span class="p">.</span><span class="n">Init</span><span class="p">.</span><span class="n">CounterMode</span> <span class="o">=</span> <span class="n">TIM_COUNTERMODE_UP</span><span class="p">;</span>
+  <span class="n">htim3</span><span class="p">.</span><span class="n">Init</span><span class="p">.</span><span class="n">Period</span> <span class="o">=</span> <span class="mi">49</span><span class="p">;</span>
+  <span class="n">htim3</span><span class="p">.</span><span class="n">Init</span><span class="p">.</span><span class="n">ClockDivision</span> <span class="o">=</span> <span class="n">TIM_CLOCKDIVISION_DIV1</span><span class="p">;</span>
+  <span class="n">htim3</span><span class="p">.</span><span class="n">Init</span><span class="p">.</span><span class="n">AutoReloadPreload</span> <span class="o">=</span> <span class="n">TIM_AUTORELOAD_PRELOAD_ENABLE</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_TIM_Base_Init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim3</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Error_Handler</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">sClockSourceConfig</span><span class="p">.</span><span class="n">ClockSource</span> <span class="o">=</span> <span class="n">TIM_CLOCKSOURCE_INTERNAL</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_TIM_ConfigClockSource</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim3</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sClockSourceConfig</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Error_Handler</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="n">sMasterConfig</span><span class="p">.</span><span class="n">MasterOutputTrigger</span> <span class="o">=</span> <span class="n">TIM_TRGO_RESET</span><span class="p">;</span>
+  <span class="n">sMasterConfig</span><span class="p">.</span><span class="n">MasterSlaveMode</span> <span class="o">=</span> <span class="n">TIM_MASTERSLAVEMODE_DISABLE</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">HAL_TIMEx_MasterConfigSynchronization</span><span class="p">(</span><span class="o">&amp;</span><span class="n">htim3</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">sMasterConfig</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">Error_Handler</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="cm">/* USER CODE BEGIN TIM3_Init 2 */</span>
+
+  <span class="cm">/* USER CODE END TIM3_Init 2 */</span>
+
+<span class="p">}</span>
+</code></pre></div><p>在STM32CubeMX中，我的TIM3设置形如：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/5404452141146.png"
+        data-srcset="vx_images/5404452141146.png, vx_images/5404452141146.png 1.5x, vx_images/5404452141146.png 2x"
+        data-sizes="auto"
+        alt="vx_images/5404452141146.png"
+        title="vx_images/5404452141146.png" /></p>
+<p>是不是完全一致？</p>
+<h3 id="如何判断哪里有问题">如何判断哪里有问题</h3>
+<p>如果你操作的硬件不能执行，你可以尝试让硬件先完成简单的任务。比如说，如果你不能让四位数码管显示四个数字，那你就先尝试数码管完全点亮；如果你的按键互相冲突，你就取消所有按键，再一个一个按键尝试查错。如果连最简单的任务都不能执行，那就一定存在代码问题或者硬件接触问题。</p>
+<p>这时候，你可以先考虑硬件的问题，比如有没有虚焊、电线有没有断开等等。以四位数码管为例，用多用电表测试你的单片机引脚，如果引脚有正常的输出，但是四位数码管没有显示数字，那就是四位数码管内部损坏；相反，如果你的单片机引脚都没有任何反应，要么是软件有问题，要么是单片机本身损坏，可以尝试换另一个STM32，或者检查代码。</p>
+<h2 id="stm32-内部细节">STM32 内部细节</h2>
+<h3 id="中断irq">中断——IRQ</h3>
+<p>中断顾名思义就是CPU暂停处理当前任务而去处理一个更加紧急的任务。中断从能否屏蔽来看分为可屏蔽中断和不可屏蔽中断，从中断目的来看可以分为陷阱中断、故障中断和终止中断。</p>
+<p>在单片机中，我们常用的中断有计时器中断、RTC秒中断等等。</p>
+<p>如果你试过Qt的signal-slot机制，那么你可以大致理解为：我的中断函数就是slot，而单片机负责在相应的signal出现时调用你的slot。</p>
+<p>需要注意的是，你不应该在任何中断中写太多耗时操作，尤其不应该添加<code>Delay</code>（原因自行思考）。</p>
+<h3 id="串口usart和uart">串口——USART和UART</h3>
+<p>串口一般用于在单片机和上位机或者别的单片机之间互相通信。常用的通信协议有<code>USART</code>和<code>UART</code>。区别在于：<code>USART</code>可以同时读写，而<code>UART</code>只能在同一时刻读或者写。</p>
+<h3 id="时钟树rcc">时钟树——RCC</h3>
+<p>当你第一次面对时钟树的时候：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/4626443101150.png"
+        data-srcset="vx_images/4626443101150.png, vx_images/4626443101150.png 1.5x, vx_images/4626443101150.png 2x"
+        data-sizes="auto"
+        alt="vx_images/4626443101150.png"
+        title="vx_images/4626443101150.png" /></p>
+<p>你可以简单地理解为：左边一列是时钟源（其实时钟源还包括中间的<code>PLLCLK</code>），相当于把某些特定频率“灌入”单片机中，而中间的部分就是对于这些频率进行修改（比如倍频或者倍降频），右边“灌水”的终点就是利用这些频率的设备。</p>
+<p><code>PLLCLK</code>相对特殊，可以看作一个特殊的时钟源，用于将四个基本时钟源进行倍频。</p>
+<p>仔细看右边一列，我们可以看到哪些设备使用了时钟：</p>
+<ul>
+<li><code>to RTC</code>：走时系统</li>
+<li><code>to ADC 1, 2</code>：模拟输入频率</li>
+<li><code>xCLK</code>：和CPU、总线、<code>SysTick</code>、<code>APB2</code>外设有关</li>
+</ul>
+<p>当你希望单片机的运行速度快一些或者慢一些，或者单独调整某些外设的速度，就会来修改RCC系统。一般地，对于刚入门的新手而言，你不是很需要调整RCC，只要保证这个部分在<code>STM32CubeMX</code>中不报错即可。你在看教程的时候，也不需要完全按照教程的RCC来配置（但是要确定运行结果一致，比如你在<code>STM32CubeMX</code>中设置了8M的<code>Systick</code>频率，如果得到<code>1us</code>在代码中的体现是<code>/8</code>，16M配置下你就应该改为<code>/16</code>）。</p>
+<h3 id="电压计adc">电压计——ADC</h3>
+<p>单片机的某些引脚可以复用（就是除了这个功能之外还有别的功能可以选。注意，不是所有引脚都可以复用为<code>ADC</code>）为<code>ADC</code>，此时单片机可以读取这个引脚和单片机<code>GND</code>引脚的电压差。在默认情况下，电压差应该在<code>0~3.3V</code>之间。当然，你也可以采用更改参考电压的方式修改这个区间。</p>
+<p>假设你的输入就是默认的<code>0~3.3V</code>，单片机会把你的电压均匀地映射到<code>0~4096</code>上。也就是说，要得到原有电压，你应该采用$V = \frac{3.3}{4096}S$来得到。</p>
+<h3 id="计时器tim">计时器——TIM</h3>
+<p>单片机中会有若干个计时器，每个计时器可以独立设置独立启用。如何设置计时器和如何利用计时器都可以通过查询相关资料学习到。</p>
+<h3 id="特殊计时器systick">特殊计时器——SysTick</h3>
+<p>你可以将<code>SysTick</code>直接看做一个特殊<code>TIM</code>。具体设置方式可以查阅资料。</p>
+<h3 id="可断电走时系统rtc">可断电走时系统——RTC</h3>
+<p>你的单片机上应该有个口叫做<code>VB(at)</code>。这个引脚用于输入来自纽扣电源的<code>3.3V</code>输入，只给单片机内的<code>RTC</code>模块和某些寄存器供电，保证单片机在<code>VCC</code>断电后还能继续走时并保证某些寄存器内容不丢失。</p>
+<p>顺带一提，你的<code>VB</code>外围电路应当这么设置：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="vx_images/1169809129576.png"
+        data-srcset="vx_images/1169809129576.png, vx_images/1169809129576.png 1.5x, vx_images/1169809129576.png 2x"
+        data-sizes="auto"
+        alt="vx_images/1169809129576.png"
+        title="vx_images/1169809129576.png" /></p>
+<h2 id="stm32-的硬件操控">STM32 的硬件操控</h2>
+<h3 id="硬件和软件的关系是什么">硬件和软件的关系是什么</h3>
+<p>非常多人在一开始用STM32的时候都会纠结：我应该把外设接到哪个口？软件里又应该如何设置？他们的误解可能是：教程里蜂鸣器接到了<code>PA1</code>，那是不是以后我的蜂鸣器只能接到<code>PA1</code>？或者教程里软件写了<code>PA1</code>，我是不是只能写<code>PA1</code>才能操控蜂鸣器？</p>
+<p>可以这么想，单片机并不知道你的外设是什么，他只会根据你的软件编写执行相应行为。相应地，外设自己也不知道他接入了哪个口。也就是说，只要双方约定接入同一个能满足你需求的口，你的单片机就能通过这个引脚操控这个硬件。比如说，你要用单片机驱动蜂鸣器，你只需要选择一个支持<code>GPIO_Output</code>的引脚就可以（如果你要<code>PWN</code>调制，你也可以选择支持<code>TIMx_Output</code>的引脚），比如<code>PA1</code>或<code>PB9</code>；如果你要通过<code>TIM</code>输出一个<code>PWN</code>波，你就不能选择一个不能复用为<code>TIMx_Output</code>的引脚。当你选择了一个具体的引脚比如<code>PC2</code>，你的硬件就应该接入<code>PC2</code>，同时软件上操作<code>PC2</code>。</p>
+<h3 id="特殊的输出方式pwn-调制输出">特殊的输出方式——PWN 调制输出</h3>
+<p>你的手机或者电脑屏幕可能正在使用<code>PWN</code>调制。</p>
+<p><code>PWN</code>调制就是用只能输出固定高电平和固定低电平的设备，模拟输出一个不固定电平。具体实现的方法可以查询相关资料。</p>
+<h3 id="尝试驱动一些基本单元">尝试驱动一些基本单元</h3>
+<p>当你有教程的时候，驱动基本单元就是一件很简单的事情，</p>
+<h3 id="如何实现复杂的外设控制">如何实现复杂的外设控制</h3>
+<p>但是当你的基本单元变多了，你就应该考虑控制与控制之间会不会互相干扰。比如你的STM32既要点亮四位数码管，又要读入DHT11的输入，你就应该考虑点亮四位数码管的中断（如果你采用中断来显示数码管）会不会导致DHT11输入的误差。或者说，如果你的某个外设需要<code>Delay(5000)</code>，你的按键可能也只能五秒读取一次。这时候，你就要合理地改变<code>Delay</code>的使用位置和时间，或者干脆就把需要<code>Delay</code>的部分写到主循环中，把不需要<code>Delay</code>的部分写到计时器中断里。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2021-11-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/stm32/">STM32</a>,&nbsp;<a href="/tags/hal/">HAL</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/c&#43;&#43;/c&#43;&#43;d%E6%8C%87%E9%92%88%E5%92%8Cp%E6%8C%87%E9%92%88/" class="prev" rel="prev" title="【C&#43;&#43;】D指针、Q指针和二进制兼容性"><i class="fas fa-angle-left fa-fw"></i>【C&#43;&#43;】D指针、Q指针和二进制兼容性</a>
+            <a href="/posts/%E6%9D%82%E8%AE%B0/%E6%9D%82%E8%AE%B0cnss-recruit-2021-wps-of-dev/" class="next" rel="next" title="【杂记】Cnss Recruit 2021 wps of Dev">【杂记】Cnss Recruit 2021 wps of Dev<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.87.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">XuKaFy</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

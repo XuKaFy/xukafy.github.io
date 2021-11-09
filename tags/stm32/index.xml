@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>STM32 - 标签 - XuKaFy&#39;s Blog</title>
+        <link>http://xukafy.github.io/tags/stm32/</link>
+        <description>STM32 - 标签 - XuKaFy&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>xufangyu2@163.com (XuKaFy)</managingEditor>
+            <webMaster>xufangyu2@163.com (XuKaFy)</webMaster><lastBuildDate>Mon, 01 Nov 2021 18:43:21 &#43;0000</lastBuildDate><atom:link href="http://xukafy.github.io/tags/stm32/" rel="self" type="application/rss+xml" /><item>
+    <title>【新手向】STM32入门</title>
+    <link>http://xukafy.github.io/posts/%E6%96%B0%E6%89%8B%E5%90%91/%E6%96%B0%E6%89%8B%E5%90%91stm32%E5%85%A5%E9%97%A8/</link>
+    <pubDate>Mon, 01 Nov 2021 18:43:21 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>http://xukafy.github.io/posts/%E6%96%B0%E6%89%8B%E5%90%91/%E6%96%B0%E6%89%8B%E5%90%91stm32%E5%85%A5%E9%97%A8/</guid>
+    <description><![CDATA[<p>如何从对STM32一脸懵逼到用STM32做点事情。</p>]]></description>
+</item></channel>
+</rss>
